@@ -321,20 +321,30 @@ async function drawShareCard(sign, guess, verdict) {
 
   ctx.textAlign = "center";
   ctx.fillStyle = "#e8c77a";
-  ctx.font = "500 34px 'Noto Sans TC', sans-serif";
-  ctx.fillText(`✦ ${state.nickname} 的星座 ✦`, W / 2, H * 0.72);
+  ctx.font = "500 30px 'Noto Sans TC', sans-serif";
+  ctx.fillText("✦ 星座占卜結果 ✦", W / 2, 1050);
+
+  // 暱稱：放大置中，過長時縮字以免超出外框
+  let size = 68;
+  ctx.font = `700 ${size}px 'Noto Sans TC', sans-serif`;
+  while (ctx.measureText(state.nickname).width > W - 160 && size > 36) {
+    size -= 4;
+    ctx.font = `700 ${size}px 'Noto Sans TC', sans-serif`;
+  }
+  ctx.fillStyle = "#ffffff";
+  ctx.fillText(state.nickname, W / 2, 1135);
 
   ctx.fillStyle = "#f6e2a8";
   ctx.font = "900 128px 'Noto Serif TC', serif";
-  ctx.fillText(sign.name, W / 2, H * 0.72 + 140);
+  ctx.fillText(sign.name, W / 2, 1275);
 
   ctx.fillStyle = "#d9d3ea";
   ctx.font = "400 34px 'Noto Sans TC', sans-serif";
-  ctx.fillText(`${rangeText(sign)} · ${ELEMENT_NAME[sign.element]}星座`, W / 2, H * 0.72 + 205);
+  ctx.fillText(`${rangeText(sign)} · ${ELEMENT_NAME[sign.element]}星座`, W / 2, 1340);
 
   ctx.fillStyle = "#f4efe3";
   ctx.font = "500 40px 'Noto Sans TC', sans-serif";
-  ctx.fillText(sign.keywords.join("  ·  "), W / 2, H * 0.72 + 275);
+  ctx.fillText(sign.keywords.join("  ·  "), W / 2, 1410);
 
   ctx.fillStyle = "#b3aec9";
   ctx.font = "400 28px 'Noto Sans TC', sans-serif";
