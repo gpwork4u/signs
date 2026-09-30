@@ -3,7 +3,7 @@
 // ---------- 星座資料 ----------
 // element：fire 火 / earth 土 / air 風 / water 水
 // mode：cardinal 開創 / fixed 固定 / mutable 變動
-// 元素 × 模式剛好對應 12 星座，問答就是在猜這兩個維度。
+// 元素 × 模式剛好對應 12 星座。
 const SIGNS = [
   { id: "capricorn", name: "摩羯座", glyph: "♑", from: [12, 22], to: [1, 19], element: "earth", mode: "cardinal",
     keywords: ["務實", "有野心", "耐力驚人"], color: "墨綠", number: 8,
@@ -116,11 +116,6 @@ function rangeText(s) {
   return `${s.from[0]}/${s.from[1]} – ${s.to[0]}/${s.to[1]}`;
 }
 
-function topKey(scores, order) {
-  // 分數相同時以 order 順序為準，確保結果穩定
-  return order.reduce((best, k) => (scores[k] > scores[best] ? k : best), order[0]);
-}
-
 function show(id) {
   document.querySelectorAll(".screen").forEach((el) => el.classList.remove("is-active"));
   $(id).classList.add("is-active");
@@ -187,21 +182,7 @@ $("#q-back").addEventListener("click", () => {
   }
 });
 
-// ---------- 計算結果 ----------
-function predict() {
-  const e = { fire: 0, earth: 0, air: 0, water: 0 };
-  const m = { cardinal: 0, fixed: 0, mutable: 0 };
-  state.answers.forEach((ai, qi) => {
-    const opt = QUESTIONS[qi].options[ai];
-    if (opt.e) e[opt.e] += 1;
-    if (opt.m) m[opt.m] += 1;
-  });
-  const element = topKey(e, ["fire", "earth", "air", "water"]);
-  const mode = topKey(m, ["cardinal", "fixed", "mutable"]);
-  const sign = SIGNS.find((s) => s.element === element && s.mode === mode);
-  return { sign, element, mode };
-}
-
+// ---------- 結果 ----------
 function finish() {
   show("#screen-loading");
   const lines = ["星星正在排列中…", "解讀你的元素能量…", "對照你的出生星空…"];
@@ -218,18 +199,10 @@ function finish() {
 }
 
 async function renderResult() {
-  const guess = predict();
   const real = signFromDate(state.month, state.day);
 
-  $("#guess-sign").textContent = `${guess.sign.glyph} ${guess.sign.name}`;
-  $("#guess-why").textContent = `你的回答充滿${ELEMENT_NAME[guess.element]}能量，做事偏向${MODE_NAME[guess.mode]}型。`;
-
   $("#result-title").textContent = `${real.glyph} ${real.name}`;
-  let verdict;
-  if (guess.sign.id === real.id) verdict = `完全命中！${state.nickname}，你就是教科書等級的${real.name} ✨`;
-  else if (guess.element === real.element) verdict = `差一點！元素猜對了，你是很有${ELEMENT_NAME[real.element]}本色的${real.name}。`;
-  else verdict = `星星這次猜錯了——${state.nickname}，你是藏著${ELEMENT_NAME[guess.element]}靈魂的${real.name}！`;
-  $("#result-verdict").textContent = verdict;
+  $("#result-verdict").textContent = `${state.nickname}，你是${ELEMENT_NAME[real.element]}星座的${real.name} ✨`;
 
   $("#result-desc").textContent = real.desc;
   const meta = [
@@ -250,7 +223,7 @@ async function renderResult() {
 
   $("#share-msg").textContent = "";
   show("#screen-result");
-  await drawShareCard(real, guess, verdict);
+  await drawShareCard(real);
 }
 
 // ---------- 分享卡片 ----------
@@ -288,7 +261,7 @@ function drawFallbackArt(ctx, W, H, sign) {
   ctx.restore();
 }
 
-async function drawShareCard(sign, guess, verdict) {
+async function drawShareCard(sign) {
   const canvas = $("#share-canvas");
   const ctx = canvas.getContext("2d");
   const W = canvas.width;
@@ -348,8 +321,7 @@ async function drawShareCard(sign, guess, verdict) {
 
   ctx.fillStyle = "#b3aec9";
   ctx.font = "400 28px 'Noto Sans TC', sans-serif";
-  const hit = guess.sign.id === sign.id ? "心理測驗完全命中 ✓" : `心理測驗猜我是 ${guess.sign.name}`;
-  ctx.fillText(`${hit}　|　星座占卜所`, W / 2, H - 80);
+  ctx.fillText("星座占卜所", W / 2, H - 80);
 }
 
 function canvasBlob() {

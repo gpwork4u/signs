@@ -284,18 +284,6 @@ body {
 }
 
 /* 結果 */
-.guess {
-  text-align: center;
-  margin-bottom: 28px;
-}
-
-.guess-sign {
-  margin: 4px 0;
-  font-family: var(--serif);
-  font-size: 28px;
-  font-weight: 600;
-}
-
 .reveal {
   margin-bottom: 20px;
 }
