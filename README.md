@@ -8,7 +8,7 @@
 codex exec --full-auto --skip-git-repo-check - < codex_prompt.txt
 ```
 
-生成的圖片會放在 `images/<sign>.png`（例如 `aries.png`、`leo.png`）。圖片還沒生成時，卡片會改用程式繪製的星空背景加星座符號。
+Codex 產出的原始 PNG 放在 `images-src/`（不進版控），網站使用轉成 JPEG 的 `images/<sign>.jpg`。圖片不存在時，卡片會改用程式繪製的星空背景加星座符號。
 
 ## 執行
 

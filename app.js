@@ -268,7 +268,7 @@ async function drawShareCard(sign) {
   const H = canvas.height;
   if (document.fonts?.ready) await document.fonts.ready;
 
-  const img = await loadImage(`images/${sign.id}.png`);
+  const img = await loadImage(`images/${sign.id}.jpg`);
   if (img) {
     // cover 填滿
     const scale = Math.max(W / img.width, H / img.height);
