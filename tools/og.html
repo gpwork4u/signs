@@ -1,0 +1,114 @@
+<!doctype html>
+<!-- 產生 1200x630 的 Open Graph 預覽圖：og.html?sign=leo（不帶參數則為首頁版本）。由 build_share.sh 截圖。 -->
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;900&family=Noto+Sans+TC:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #0b0a1f;
+        color: #f4efe3;
+        font-family: "Noto Sans TC", sans-serif;
+      }
+      .wrap {
+        display: flex;
+        height: 100%;
+        background: radial-gradient(ellipse at 75% 0%, #2b2366 0%, #15133a 45%, #0b0a1f 85%);
+      }
+      .art {
+        width: 630px;
+        height: 630px;
+        flex: none;
+        display: grid;
+        overflow: hidden;
+      }
+      .art img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 12%;
+        display: block;
+      }
+      .art.grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .art.grid img {
+        object-position: center 18%;
+      }
+      .text {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0 56px;
+        border-left: 1px solid rgba(232, 199, 122, 0.35);
+      }
+      .eyebrow {
+        color: #e8c77a;
+        font-size: 26px;
+        letter-spacing: 0.2em;
+        margin: 0 0 12px;
+      }
+      h1 {
+        margin: 0;
+        font-family: "Noto Serif TC", serif;
+        font-weight: 900;
+        font-size: 82px;
+        white-space: nowrap;
+        line-height: 1.15;
+        color: #f6e2a8;
+      }
+      .date {
+        margin: 8px 0 32px;
+        font-size: 36px;
+        color: #d9d3ea;
+      }
+      .cta {
+        margin: 0 0 10px;
+        font-size: 30px;
+        font-weight: 500;
+      }
+      .url {
+        margin: 0;
+        font-size: 24px;
+        color: #b3aec9;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <div id="art" class="art"></div>
+      <div class="text">
+        <p class="eyebrow">✦ 星座占卜所 ✦</p>
+        <h1 id="name"></h1>
+        <p id="date" class="date"></p>
+        <p class="cta">回答 10 題，揭曉你的星座 →</p>
+        <p class="url">gpwork4u.github.io/signs</p>
+      </div>
+    </div>
+    <script>
+      // 參數由 build_share.sh 從 src/data/signs.ts 讀出後帶入：?sign=leo&name=獅子座&date=7/23 – 8/22
+      const q = new URLSearchParams(location.search);
+      const ids = "aries taurus gemini cancer leo virgo libra scorpio sagittarius capricorn aquarius pisces".split(" ");
+      const art = document.getElementById("art");
+      if (q.get("sign")) {
+        art.innerHTML = `<img src="../public/images/${q.get("sign")}.jpg" alt="">`;
+        document.getElementById("name").textContent = `我是${q.get("name")}`;
+        document.getElementById("date").textContent = q.get("date");
+      } else {
+        art.classList.add("grid");
+        art.innerHTML = ids.map((id) => `<img src="../public/images/${id}.jpg" alt="">`).join("");
+        document.getElementById("name").textContent = "星座占卜所";
+        document.getElementById("date").textContent = "你是哪個星座？";
+      }
+    </script>
+  </body>
+</html>

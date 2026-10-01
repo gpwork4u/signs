@@ -1,0 +1,149 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-serif);
+    --font-sans: "Noto Sans TC", system-ui, sans-serif;
+    --font-serif: "Noto Serif TC", serif;
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+    /* 星空主題：深靛藍夜空 + 金色點綴（網站固定使用深色） */
+    color-scheme: dark;
+    --background: #0b0a1f;
+    --foreground: #f4efe3;
+    --card: rgb(255 255 255 / 5%);
+    --card-foreground: #f4efe3;
+    --popover: #17153d;
+    --popover-foreground: #f4efe3;
+    --primary: #e8c77a;
+    --primary-foreground: #241c05;
+    --secondary: rgb(255 255 255 / 7%);
+    --secondary-foreground: #f4efe3;
+    --muted: rgb(255 255 255 / 8%);
+    --muted-foreground: #b3aec9;
+    --accent: rgb(232 199 122 / 16%);
+    --accent-foreground: #f6e2a8;
+    --destructive: #ff9b8a;
+    --border: rgb(232 199 122 / 26%);
+    --input: rgb(232 199 122 / 30%);
+    --ring: #e8c77a;
+    --chart-1: #e8c77a;
+    --chart-2: #9fd8ff;
+    --chart-3: #5fd0c8;
+    --chart-4: #9fcf7a;
+    --chart-5: #ff8a4c;
+    --radius: 0.875rem;
+    --sidebar: #17153d;
+    --sidebar-foreground: #f4efe3;
+    --sidebar-primary: #e8c77a;
+    --sidebar-primary-foreground: #241c05;
+    --sidebar-accent: rgb(232 199 122 / 16%);
+    --sidebar-accent-foreground: #f6e2a8;
+    --sidebar-border: rgb(232 199 122 / 26%);
+    --sidebar-ring: #e8c77a;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-image: radial-gradient(ellipse at 50% -10%, #2b2366 0%, #15133a 35%, #0b0a1f 75%);
+    background-attachment: fixed;
+    }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+    }
+  html {
+    @apply font-sans;
+    }
+}
+@layer components {
+  .eyebrow {
+    @apply mb-2 text-[13px] tracking-[0.2em] text-primary;
+  }
+
+  .title-gold {
+    background: linear-gradient(180deg, #f6e2a8, #e8c77a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* 卡片類元件加一點毛玻璃，讓背景星空透出來 */
+  [data-slot="card"] {
+    @apply backdrop-blur-sm;
+  }
+
+  .screen-in {
+    animation: screen-in 0.5s ease both;
+  }
+
+  .orb {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #f6e2a8, #e8c77a 30%, #6b4fd8 70%, transparent 72%);
+    box-shadow: 0 0 60px rgb(232 199 122 / 50%);
+    animation: orb-pulse 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes screen-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@keyframes orb-pulse {
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 90px rgb(232 199 122 / 80%);
+  }
+}
