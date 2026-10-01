@@ -1,11 +1,14 @@
-Use your built-in image generation tool to create 12 zodiac illustrations, one per western zodiac sign, and save each as a PNG in ./images/ with exactly these filenames:
+Use your built-in image generation tool to create 12 zodiac illustrations, one per western zodiac sign, and save each as a PNG in ./images-src/ with exactly these filenames:
 aries.png, taurus.png, gemini.png, cancer.png, leo.png, virgo.png, libra.png, scorpio.png, sagittarius.png, capricorn.png, aquarius.png, pisces.png
 
-Requirements for ALL 12 images (they must look like one consistent series):
+Requirements for ALL 12 images (they must look like one consistent, minimal series):
 - Portrait orientation (1024x1536), suitable as a shareable social card.
-- Style: dreamy celestial illustration, deep midnight-indigo night sky background with subtle nebula and fine gold star dust. The sign's symbolic figure (ram for Aries, bull for Taurus, twins for Gemini, crab for Cancer, lion for Leo, maiden holding wheat for Virgo, balance scales for Libra, scorpion for Scorpio, centaur archer for Sagittarius, sea-goat for Capricorn, water bearer for Aquarius, two fish for Pisces) drawn in glowing gold line-art with soft luminous accents matching the sign's element (fire = warm orange/red, earth = green/amber, air = pale cyan/lilac, water = teal/blue).
-- The constellation's star pattern connected by thin gold lines, faintly overlaid behind the figure.
-- Figure centered in the upper two-thirds; keep the bottom third relatively calm and dark (text will be overlaid there later).
-- NO text, NO letters, NO words, NO watermark anywhere in the image.
+- Style: MINIMAL and SIMPLE. Flat deep midnight-indigo background with only a few soft stars and a very subtle gradient. No busy nebula, no clouds, no smoke, no landscape.
+- Subject: the sign's constellation as bright gold star dots joined by thin gold lines, combined with ONE simple iconic emblem drawn in clean, thin, single-weight gold line-art (like an elegant logo or icon): ram horns for Aries, bull head for Taurus, two simple linked figures as abstract outlines for Gemini, crab outline for Cancer, lion head outline for Leo, a wheat stalk for Virgo, balance scales for Libra, scorpion outline for Scorpio, bow and arrow for Sagittarius, sea-goat outline for Capricorn, a water vessel pouring wavy lines for Aquarius, two fish in a circle for Pisces.
+- Avoid realistic people and faces. Any human sign (Gemini, Virgo, Aquarius, Sagittarius) must use a symbolic object or an abstract outline, never a detailed person, face, hair, clothing or skin.
+- Minimal detail: no shading, no textures, no ornaments, no glow effects except a faint soft halo. Lots of empty negative space.
+- One small accent color per element, used sparingly: fire = warm coral, earth = sage green, air = pale lilac, water = soft teal.
+- Emblem centered in the upper half; keep the bottom 40% of the image plain dark and empty (text will be overlaid there later).
+- NO text, NO letters, NO zodiac glyph characters, NO words, NO watermark anywhere in the image.
 
-Generate each image, then save the generated file into ./images/ with the correct filename. After all 12 are done, list ./images to confirm all 12 files exist.
+Generate each image, then save the generated file into ./images-src/ with the correct filename. After all 12 are done, list ./images-src to confirm all 12 files exist.

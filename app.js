@@ -2,49 +2,22 @@
 
 // ---------- 星座資料 ----------
 // element：fire 火 / earth 土 / air 風 / water 水
-// mode：cardinal 開創 / fixed 固定 / mutable 變動
-// 元素 × 模式剛好對應 12 星座。
+// element 決定圖片缺失時替代背景的光暈色。
 const SIGNS = [
-  { id: "capricorn", name: "摩羯座", glyph: "♑", from: [12, 22], to: [1, 19], element: "earth", mode: "cardinal",
-    keywords: ["務實", "有野心", "耐力驚人"], color: "墨綠", number: 8,
-    desc: "你是把夢想拆成步驟、一步步爬上山頂的人。外表冷靜，內心其實有很強的責任感，時間越久越顯得可靠。" },
-  { id: "aquarius", name: "水瓶座", glyph: "♒", from: [1, 20], to: [2, 18], element: "air", mode: "fixed",
-    keywords: ["獨立", "創新", "理想主義"], color: "電光藍", number: 4,
-    desc: "你的腦袋常常走在時代前面，重視自由也在乎群體。看似疏離，其實對朋友有著獨特又長久的忠誠。" },
-  { id: "pisces", name: "雙魚座", glyph: "♓", from: [2, 19], to: [3, 20], element: "water", mode: "mutable",
-    keywords: ["浪漫", "同理心", "想像力"], color: "海霧紫", number: 7,
-    desc: "你能感受到別人說不出口的情緒，也擁有豐富的想像世界。溫柔是你的超能力，記得也要好好照顧自己。" },
-  { id: "aries", name: "牡羊座", glyph: "♈", from: [3, 21], to: [4, 19], element: "fire", mode: "cardinal",
-    keywords: ["勇敢", "直率", "行動派"], color: "火焰紅", number: 9,
-    desc: "你是點燃一切的火種，想到就做、做了再說。熱情和衝勁讓身邊的人也跟著熱血起來。" },
-  { id: "taurus", name: "金牛座", glyph: "♉", from: [4, 20], to: [5, 20], element: "earth", mode: "fixed",
-    keywords: ["穩定", "有品味", "堅持"], color: "橄欖綠", number: 6,
-    desc: "你懂得享受生活裡的美好：好吃的、好看的、舒服的。步調不快，但一旦決定就很難被動搖。" },
-  { id: "gemini", name: "雙子座", glyph: "♊", from: [5, 21], to: [6, 21], element: "air", mode: "mutable",
-    keywords: ["機智", "好奇", "善於溝通"], color: "檸檬黃", number: 5,
-    desc: "你的好奇心像停不下來的雷達，什麼都想知道、什麼都能聊。和你相處永遠不會無聊。" },
-  { id: "cancer", name: "巨蟹座", glyph: "♋", from: [6, 22], to: [7, 22], element: "water", mode: "cardinal",
-    keywords: ["顧家", "溫暖", "保護欲"], color: "月光銀", number: 2,
-    desc: "你把在乎的人放在心上最柔軟的地方，也會為了他們變得無比勇敢。你的家就是大家的避風港。" },
-  { id: "leo", name: "獅子座", glyph: "♌", from: [7, 23], to: [8, 22], element: "fire", mode: "fixed",
-    keywords: ["自信", "大方", "天生主角"], color: "太陽金", number: 1,
-    desc: "你天生自帶光芒，走到哪裡都是焦點。慷慨又重義氣，被你當成朋友的人都會感到被照亮。" },
-  { id: "virgo", name: "處女座", glyph: "♍", from: [8, 23], to: [9, 22], element: "earth", mode: "mutable",
-    keywords: ["細心", "分析力", "追求完美"], color: "麥穗米", number: 3,
-    desc: "你看得見別人忽略的細節，也總是默默把事情做到最好。你的貼心常常藏在很小很小的地方。" },
-  { id: "libra", name: "天秤座", glyph: "♎", from: [9, 23], to: [10, 23], element: "air", mode: "cardinal",
-    keywords: ["優雅", "公正", "人緣好"], color: "玫瑰粉", number: 6,
-    desc: "你追求和諧與美感，擅長在不同的人之間找到平衡點。你的溫和與品味讓人很想靠近。" },
-  { id: "scorpio", name: "天蠍座", glyph: "♏", from: [10, 24], to: [11, 22], element: "water", mode: "fixed",
-    keywords: ["深刻", "專注", "神秘"], color: "酒紅", number: 8,
-    desc: "你的情感濃烈而深沉，看人看事都能直達核心。一旦信任某人，你會用全部的力量守護他。" },
-  { id: "sagittarius", name: "射手座", glyph: "♐", from: [11, 23], to: [12, 21], element: "fire", mode: "mutable",
-    keywords: ["自由", "樂觀", "愛冒險"], color: "天空紫", number: 3,
-    desc: "你的心永遠在遠方，熱愛探索、學習與旅行。樂觀和幽默讓你走到哪裡都能交到朋友。" },
+  { id: "capricorn", name: "摩羯座", glyph: "♑", from: [12, 22], to: [1, 19], element: "earth" },
+  { id: "aquarius", name: "水瓶座", glyph: "♒", from: [1, 20], to: [2, 18], element: "air" },
+  { id: "pisces", name: "雙魚座", glyph: "♓", from: [2, 19], to: [3, 20], element: "water" },
+  { id: "aries", name: "牡羊座", glyph: "♈", from: [3, 21], to: [4, 19], element: "fire" },
+  { id: "taurus", name: "金牛座", glyph: "♉", from: [4, 20], to: [5, 20], element: "earth" },
+  { id: "gemini", name: "雙子座", glyph: "♊", from: [5, 21], to: [6, 21], element: "air" },
+  { id: "cancer", name: "巨蟹座", glyph: "♋", from: [6, 22], to: [7, 22], element: "water" },
+  { id: "leo", name: "獅子座", glyph: "♌", from: [7, 23], to: [8, 22], element: "fire" },
+  { id: "virgo", name: "處女座", glyph: "♍", from: [8, 23], to: [9, 22], element: "earth" },
+  { id: "libra", name: "天秤座", glyph: "♎", from: [9, 23], to: [10, 23], element: "air" },
+  { id: "scorpio", name: "天蠍座", glyph: "♏", from: [10, 24], to: [11, 22], element: "water" },
+  { id: "sagittarius", name: "射手座", glyph: "♐", from: [11, 23], to: [12, 21], element: "fire" },
 ];
 
-const ELEMENT_NAME = { fire: "火象", earth: "土象", air: "風象", water: "水象" };
-const MODE_NAME = { cardinal: "開創", fixed: "固定", mutable: "變動" };
 const ELEMENT_HUE = { fire: "#ff8a4c", earth: "#9fcf7a", air: "#9fd8ff", water: "#5fd0c8" };
 
 // ---------- 題目 ----------
@@ -200,27 +173,6 @@ function finish() {
 
 async function renderResult() {
   const real = signFromDate(state.month, state.day);
-
-  $("#result-title").textContent = `${real.glyph} ${real.name}`;
-  $("#result-verdict").textContent = `${state.nickname}，你是${ELEMENT_NAME[real.element]}星座的${real.name} ✨`;
-
-  $("#result-desc").textContent = real.desc;
-  const meta = [
-    ["日期", rangeText(real)],
-    ["元素", `${ELEMENT_NAME[real.element]} · ${MODE_NAME[real.mode]}`],
-    ["關鍵字", real.keywords.join("、")],
-    ["幸運色", real.color],
-    ["幸運數字", String(real.number)],
-  ];
-  $("#result-meta").innerHTML = "";
-  meta.forEach(([k, v]) => {
-    const dt = document.createElement("dt");
-    const dd = document.createElement("dd");
-    dt.textContent = k;
-    dd.textContent = v;
-    $("#result-meta").append(dt, dd);
-  });
-
   $("#share-msg").textContent = "";
   show("#screen-result");
   await drawShareCard(real);
@@ -295,7 +247,7 @@ async function drawShareCard(sign) {
   ctx.textAlign = "center";
   ctx.fillStyle = "#e8c77a";
   ctx.font = "500 30px 'Noto Sans TC', sans-serif";
-  ctx.fillText("✦ 星座占卜結果 ✦", W / 2, 1050);
+  ctx.fillText("✦ 星座占卜結果 ✦", W / 2, 1110);
 
   // 暱稱：放大置中，過長時縮字以免超出外框
   let size = 68;
@@ -305,19 +257,15 @@ async function drawShareCard(sign) {
     ctx.font = `700 ${size}px 'Noto Sans TC', sans-serif`;
   }
   ctx.fillStyle = "#ffffff";
-  ctx.fillText(state.nickname, W / 2, 1135);
+  ctx.fillText(state.nickname, W / 2, 1200);
 
   ctx.fillStyle = "#f6e2a8";
-  ctx.font = "900 128px 'Noto Serif TC', serif";
-  ctx.fillText(sign.name, W / 2, 1275);
+  ctx.font = "900 140px 'Noto Serif TC', serif";
+  ctx.fillText(sign.name, W / 2, 1350);
 
   ctx.fillStyle = "#d9d3ea";
-  ctx.font = "400 34px 'Noto Sans TC', sans-serif";
-  ctx.fillText(`${rangeText(sign)} · ${ELEMENT_NAME[sign.element]}星座`, W / 2, 1340);
-
-  ctx.fillStyle = "#f4efe3";
-  ctx.font = "500 40px 'Noto Sans TC', sans-serif";
-  ctx.fillText(sign.keywords.join("  ·  "), W / 2, 1410);
+  ctx.font = "500 44px 'Noto Sans TC', sans-serif";
+  ctx.fillText(rangeText(sign), W / 2, 1425);
 
   ctx.fillStyle = "#b3aec9";
   ctx.font = "400 28px 'Noto Sans TC', sans-serif";
@@ -385,32 +333,113 @@ $("#btn-again").addEventListener("click", () => {
 });
 
 // ---------- 背景星空 ----------
+// 模擬夜空周日運動：星星繞同一個天極點緩慢旋轉，並拖出弧形星軌（長曝光效果）。
+// 星軌直接畫成弧線而非殘影疊加，所以畫布保持透明、不蓋住頁面漸層。
 (function sky() {
   const c = $("#sky");
   const ctx = c.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)");
+  const SPEED = 0.012; // 每秒旋轉的弧度（約 9 分鐘轉一圈）
+  const TRAIL = 0.045; // 星軌長度（弧度），分三段由亮到淡
+  const COLORS = ["#f6e2a8", "#ffffff", "#cfd8ff", "#ffd9c2"];
   let stars = [];
+  let pole = { x: 0, y: 0 };
+  let dpr = 1;
+  let meteor = null;
+  let nextMeteor = 4000;
+  let last = 0;
+
   function resize() {
-    c.width = innerWidth * devicePixelRatio;
-    c.height = innerHeight * devicePixelRatio;
-    stars = Array.from({ length: 140 }, () => ({
-      x: Math.random() * c.width,
-      y: Math.random() * c.height,
-      r: (Math.random() * 1.3 + 0.3) * devicePixelRatio,
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    c.width = innerWidth * dpr;
+    c.height = innerHeight * dpr;
+    // 天極點放在畫面上方偏右，旋轉時星軌呈現斜向弧線
+    pole = { x: c.width * 0.72, y: c.height * 0.12 };
+    // 半徑需覆蓋到離天極最遠的角落，旋轉時畫面才不會出現空洞
+    const R = Math.hypot(Math.max(pole.x, c.width - pole.x), c.height - pole.y);
+    const count = Math.round(Math.min(320, (innerWidth * innerHeight) / 4500));
+    stars = Array.from({ length: count }, () => ({
+      d: Math.sqrt(Math.random()) * R, // 開根號讓星星在面積上均勻分布
+      a: Math.random() * Math.PI * 2,
+      r: (Math.random() ** 2 * 1.4 + 0.4) * dpr,
       p: Math.random() * Math.PI * 2,
+      color: COLORS[(Math.random() * COLORS.length) | 0],
     }));
   }
-  function tick(t) {
-    ctx.clearRect(0, 0, c.width, c.height);
+
+  function drawStars(t, rot) {
     for (const s of stars) {
-      ctx.globalAlpha = 0.35 + 0.65 * Math.abs(Math.sin(t / 1400 + s.p));
-      ctx.fillStyle = "#f6e2a8";
+      const a = s.a + rot;
+      const x = pole.x + Math.cos(a) * s.d;
+      const y = pole.y + Math.sin(a) * s.d;
+      if (x < -20 || y < -20 || x > c.width + 20 || y > c.height + 20) continue;
+      const twinkle = 0.45 + 0.55 * Math.abs(Math.sin(t / 1600 + s.p));
+      if (!reduce.matches) {
+        ctx.strokeStyle = s.color;
+        ctx.lineWidth = s.r * 0.8;
+        for (let i = 0; i < 3; i++) {
+          ctx.globalAlpha = (0.16 - i * 0.05) * twinkle;
+          ctx.beginPath();
+          ctx.arc(pole.x, pole.y, s.d, a - (TRAIL * (i + 1)) / 3, a - (TRAIL * i) / 3);
+          ctx.stroke();
+        }
+      }
+      ctx.globalAlpha = twinkle;
+      ctx.fillStyle = s.color;
       ctx.beginPath();
-      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.arc(x, y, s.r, 0, Math.PI * 2);
       ctx.fill();
     }
+  }
+
+  function drawMeteor(dt) {
+    if (!meteor) {
+      nextMeteor -= dt;
+      if (nextMeteor > 0) return;
+      nextMeteor = 5000 + Math.random() * 7000;
+      const ang = Math.PI * (0.15 + Math.random() * 0.2); // 往右下方劃過
+      meteor = {
+        x: Math.random() * c.width * 0.7,
+        y: Math.random() * c.height * 0.4,
+        vx: Math.cos(ang) * 1.1 * dpr,
+        vy: Math.sin(ang) * 1.1 * dpr,
+        life: 0,
+        max: 900,
+      };
+    }
+    meteor.life += dt;
+    meteor.x += meteor.vx * dt;
+    meteor.y += meteor.vy * dt;
+    const k = 1 - meteor.life / meteor.max;
+    if (k <= 0) return (meteor = null);
+    const len = 120 * dpr;
+    const tx = meteor.x - meteor.vx * (len / (1.1 * dpr));
+    const ty = meteor.y - meteor.vy * (len / (1.1 * dpr));
+    const g = ctx.createLinearGradient(meteor.x, meteor.y, tx, ty);
+    g.addColorStop(0, `rgba(255,248,225,${0.9 * k})`);
+    g.addColorStop(1, "rgba(255,248,225,0)");
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = g;
+    ctx.lineWidth = 1.6 * dpr;
+    ctx.beginPath();
+    ctx.moveTo(meteor.x, meteor.y);
+    ctx.lineTo(tx, ty);
+    ctx.stroke();
+  }
+
+  function tick(t) {
+    const dt = Math.min(t - last, 50); // 分頁切回來時避免一次跳太多
+    last = t;
+    ctx.clearRect(0, 0, c.width, c.height);
+    drawStars(t, reduce.matches ? 0 : (t / 1000) * SPEED);
+    if (!reduce.matches) drawMeteor(dt);
     requestAnimationFrame(tick);
   }
+
   addEventListener("resize", resize);
   resize();
-  requestAnimationFrame(tick);
+  requestAnimationFrame((t) => {
+    last = t;
+    tick(t);
+  });
 })();
